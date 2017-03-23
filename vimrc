@@ -18,18 +18,18 @@ Plugin 'w0rp/ale'
 Plugin 'bling/vim-airline'
 " Themes for Bottom Line status bar
 Plugin 'vim-airline/vim-airline-themes'
-" Javascript syntax help
-Plugin 'pangloss/vim-javascript'
-" Javascript syntax help
+" jsx syntax help
 Plugin 'mxw/vim-jsx'
-" Indention help
-Plugin 'nathanaelkane/vim-indent-guides'
 " Color schemeing
 Plugin 'chriskempson/base16-vim'
 " Commenting
 Plugin 'scrooloose/nerdcommenter'
 " surround
 Plugin 'tpope/vim-surround'
+" indent me
+Plugin 'nathanaelkane/vim-indent-guides'
+" js highlighting
+Plugin 'pangloss/vim-javascript'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -70,6 +70,12 @@ set clipboard=unnamed
 "Ag instead of ack searching
 let g:ackprg = 'ag --vimgrep'
 cnoreabbrev Ack Ack!
+
+" ale
+let g:ale_lint_on_enter        = 1   " no checks on open
+let g:ale_lint_on_save         = 1   " check on save
+let g:ale_lint_on_text_changed = 1   " check on text change
+let g:ale_lint_delay           = 200 " millisecond delay before checking
 
 " Theme stuff
 let g:airline_powerline_fonts = 1
@@ -112,3 +118,9 @@ map <C-l> <C-w>l
 
 " emment
 let g:user_emmet_mode='a'
+
+" jsx highlighting without extention
+let g:jsx_ext_required = 0
+
+" indention
+let g:indent_guides_enable_on_vim_startup = 1
