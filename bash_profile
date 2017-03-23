@@ -31,6 +31,7 @@ alias startpostg="brew services start postgresql"
 alias dcanvas="cd /Users/sburnett/Desktop/canvas-lms"
 alias canvas="cd /Users/sburnett/canvas-lms"
 alias serverstart="bundle exec rails s"
+alias turbo-docker="while true; do dinghy ssh echo 'turbo mode activated'; sleep 0.5; done"
 
 #git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 #run that and add vim base16 from there you will have nice syntax
