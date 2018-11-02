@@ -6,14 +6,23 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'leafgarland/typescript-vim'
 " For gitblaming
 Plugin 'tpope/vim-fugitive'
+" ale linting manager
+Plugin 'w0rp/ale'
+" Better vim-fugative mappings
+Plugin 'tpope/vim-unimpaired'
+" Buffer management
+Plugin 'jeetsukumaran/vim-buffergator'
 " File Browsing
 Plugin 'scrooloose/nerdtree'
+" Multi Cursor
+Plugin 'terryma/vim-multiple-cursors'
+" CoffeeScript
+Plugin 'kchmck/vim-coffee-script'
 " Searching like AG
 Plugin 'mileszs/ack.vim'
-" Syntax/linting
-Plugin 'w0rp/ale'
 " Bottom line styling
 Plugin 'bling/vim-airline'
 " Themes for Bottom Line status bar
@@ -28,8 +37,12 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-surround'
 " indent me
 Plugin 'nathanaelkane/vim-indent-guides'
+" golang
+Plugin 'fatih/vim-go'
 " js highlighting
 Plugin 'pangloss/vim-javascript'
+" octave highlighting
+Plugin 'jvirtanen/vim-octave'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -37,6 +50,9 @@ filetype plugin on
 
 " commenter
 let g:NERDSpaceDelims = 1
+
+" nerdtree close when its only left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " backspace fix
 set backspace=indent,eol,start
@@ -46,6 +62,8 @@ let mapleader = " "
 inoremap lj <esc>:w<CR>
 noremap ;s :w<CR>
 noremap ;; :wq<CR>
+"get file path
+nnoremap <leader>fp :let @*=expand("%")<CR>
 map <C-n> :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>s :FZF<cr>
 filetype plugin indent on
@@ -57,6 +75,8 @@ set mouse=a
 syntax enable
 set rtp+=/usr/local/opt/fzf
 set number
+" vsplit under cursor
+nnoremap <leader>vp :vertical wincmd f<CR>
 
 " tab
 set tabstop=2
@@ -71,11 +91,14 @@ set clipboard=unnamed
 let g:ackprg = 'ag --vimgrep'
 cnoreabbrev Ack Ack!
 
-" ale
+" " ale
+let b:ale_fixers = {'javascript': ['eslint']}
+let b:ale_linters = {'javascript': ['eslint']}
 let g:ale_lint_on_enter        = 1   " no checks on open
 let g:ale_lint_on_save         = 1   " check on save
 let g:ale_lint_on_text_changed = 1   " check on text change
 let g:ale_lint_delay           = 200 " millisecond delay before checking
+" let g:ale_fix_on_save = 1
 
 " Theme stuff
 let g:airline_powerline_fonts = 1
@@ -95,6 +118,8 @@ let g:airline_powerline_fonts = 1
 set guifont=Source\ Code\ Pro\ for\ Powerline
 set guioptions-=r
 set guioptions-=L
+set list          " Display unprintable characters f12 - switches
+set listchars=tab:•\ ,trail:•,extends:»,precedes:« " Unprintable chars mapping
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -121,6 +146,13 @@ let g:user_emmet_mode='a'
 
 " jsx highlighting without extention
 let g:jsx_ext_required = 0
+
+" multi cursor
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-g>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
 
 " indention
 let g:indent_guides_enable_on_vim_startup = 1
