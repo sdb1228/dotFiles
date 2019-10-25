@@ -43,6 +43,10 @@ Plugin 'fatih/vim-go'
 Plugin 'pangloss/vim-javascript'
 " octave highlighting
 Plugin 'jvirtanen/vim-octave'
+"Auto completion
+" Plugin 'Valloric/YouCompleteMe'
+" Elixir formatting
+Plugin 'elixir-lang/vim-elixir'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -62,8 +66,10 @@ let mapleader = " "
 inoremap lj <esc>:w<CR>
 noremap ;s :w<CR>
 noremap ;; :wq<CR>
+nnoremap <C-w>f :vert wincmd f <cr>
 "get file path
 nnoremap <leader>fp :let @*=expand("%")<CR>
+nnoremap <leader>l :ALEFix<CR>
 map <C-n> :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>s :FZF<cr>
 filetype plugin indent on
@@ -92,12 +98,17 @@ let g:ackprg = 'ag --vimgrep'
 cnoreabbrev Ack Ack!
 
 " " ale
-let b:ale_fixers = {'javascript': ['eslint']}
-let b:ale_linters = {'javascript': ['eslint']}
+:let b:ale_fixers = {'javascript': ['eslint']}
+:let b:ale_linters = {'javascript': ['eslint']}
+:let g:ale_fixers = {'javascript': ['eslint']}
+:let g:ale_linters = {'javascript': ['eslint']}
+let b:ale_linters = ['eslint']
 let g:ale_lint_on_enter        = 1   " no checks on open
 let g:ale_lint_on_save         = 1   " check on save
 let g:ale_lint_on_text_changed = 1   " check on text change
 let g:ale_lint_delay           = 200 " millisecond delay before checking
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
 " let g:ale_fix_on_save = 1
 
 " Theme stuff
@@ -154,5 +165,14 @@ let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
+" You Complete me
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+"You Complete js ctag jumpin
+augroup js
+  au FileType javascript.jsx,javascript noremap <buffer> <C-]> :YcmCompleter GoTo<cr>
+augroup END
+
 " indention
 let g:indent_guides_enable_on_vim_startup = 1
+
