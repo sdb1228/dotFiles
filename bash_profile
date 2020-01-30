@@ -1,3 +1,4 @@
+  
 # We do everything in here because mac requires sourcing in your bashrc and thats lame
 # Set CLICOLOR if you want Ansi Colors in iTerm2 export CLICOLOR=1
 # FOR CANVAS
@@ -12,11 +13,10 @@ export TERM=xterm-256color
 
 #For brew
 export PATH=/usr/local/bin:$PATH #Docker stuff
-export DOCKER_HOST=tcp://192.168.99.100:2376
+export DOCKER_HOST=tcp://192.168.99.101:2376
 export DOCKER_CERT_PATH=/Users/sburnett/.docker/machine/machines/dinghy
 export DOCKER_TLS_VERIFY=1
 export DOCKER_MACHINE_NAME=dinghy
-
 #Setting default git editor to vim
 export GIT_EDITOR=vim
 export EDITOR=vim
@@ -49,9 +49,13 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWCOLORHINTS=true
 export GIT_PS1_SHOWUPSTREAM=verbose
 export PS1='\w$(declare -F __git_ps1 &>/dev/null && __git_ps1 " (%s)") $ '
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 #NVM fun
 export NVM_DIR="$HOME/.nvm"
 
-chruby 2.4.0
+chruby 2.6.5
 #Go Stuff
+
+export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+export PATH="$PATH:/Users/sburnett/flutter/bin"
