@@ -6,7 +6,10 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+" typescript
 Plugin 'leafgarland/typescript-vim'
+" dart
+Plugin 'dart-lang/dart-vim-plugin'
 " For gitblaming
 Plugin 'tpope/vim-fugitive'
 " ale linting manager
