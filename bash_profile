@@ -1,10 +1,6 @@
-  
 # We do everything in here because mac requires sourcing in your bashrc and thats lame
 # Set CLICOLOR if you want Ansi Colors in iTerm2 export CLICOLOR=1
 # FOR CANVAS
-export ENABLE_CANVAS_WEBPACK_HOOKS=1
-source ~/Desktop/canvas-lms/frontend_build/webpackHooks/macNotifications.sh
-
 # Set colors to match iTerm2 Terminal Colors
 export TERM=xterm-256color
 
@@ -29,8 +25,7 @@ source /usr/local/share/chruby/auto.sh
 alias dc=docker-compose
 alias gpg="git push origin HEAD:refs/for/master"
 alias startpostg="brew services start postgresql"
-alias dcanvas="cd /Users/sburnett/Desktop/canvas-lms"
-alias canvas="cd /Users/sburnett/canvas-lms"
+alias aumni="cd /Users/stevenburnett/web_app"
 alias magic="ctags -R ."
 alias serverstart="bundle exec rails s"
 alias turbo-docker="while true; do dinghy ssh echo 'turbo mode activated'; sleep 0.5; done"
@@ -39,6 +34,11 @@ alias nocorsplease='open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/G
 
 #git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 #run that and add vim base16 from there you will have nice syntax
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
@@ -54,8 +54,4 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 #NVM fun
 export NVM_DIR="$HOME/.nvm"
 
-chruby 2.6.5
-#Go Stuff
-
-export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
-export PATH="$PATH:/Users/sburnett/flutter/bin"
+[ -s "/Users/stevenburnett/.scm_breeze/scm_breeze.sh" ] && source "/Users/stevenburnett/.scm_breeze/scm_breeze.sh"
