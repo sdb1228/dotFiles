@@ -1,18 +1,15 @@
+set re=0
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" Auto Completion
-Plugin 'neoclide/coc.nvim'
 " Track the engine.
-Plugin 'SirVer/ultisnips'
-
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'maxmellon/vim-jsx-pretty'
 " typescript
 Plugin 'leafgarland/typescript-vim'
 " styled components
@@ -28,6 +25,9 @@ Plugin 'w0rp/ale'
 " Better vim-fugative mappings
 Plugin 'tpope/vim-unimpaired'
 " Buffer management
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+
 Plugin 'jeetsukumaran/vim-buffergator'
 " File Browsing
 Plugin 'scrooloose/nerdtree'
@@ -61,6 +61,9 @@ Plugin 'jvirtanen/vim-octave'
 " Plugin 'Valloric/YouCompleteMe'
 " Elixir formatting
 Plugin 'elixir-lang/vim-elixir'
+" Auto Complete
+Plugin 'neoclide/coc.nvim'
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -109,15 +112,17 @@ set expandtab
 set clipboard=unnamed
 
 "Ag instead of ack searching
-let g:ackprg = 'ag --vimgrep'
+let g:ackprg = 'rg --vimgrep'
 cnoreabbrev Ack Ack!
 
 " " ale
-:let b:ale_fixers = {'javascript': ['eslint']}
-:let b:ale_linters = {'javascript': ['eslint']}
-:let g:ale_fixers = {'javascript': ['eslint']}
-:let g:ale_linters = {'javascript': ['eslint']}
-let b:ale_linters = ['eslint']
+" Set everything in one go.
+let g:ale_fixers = {
+\ 'typescript': ['tslint', 'prettier', 'eslint'],
+\ 'typescriptreact': ['tslint', 'prettier', 'eslint'],
+\ 'javascript': ['eslint', 'prettier'],
+\ 'json': ['prettier'],
+\}
 let g:ale_lint_on_enter        = 1   " no checks on open
 let g:ale_lint_on_save         = 1   " check on save
 let g:ale_lint_on_text_changed = 1   " check on text change
@@ -249,14 +254,19 @@ if exists('*complete_info')
 else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
 
 "Commands to run in coc
-"CocInstall coc-snippets
+"x CocInstall coc-snippets
 "CocInstall coc-styled-components
 "CocInstall coc-solargraph
 "CocInstall coc-tsserver coc-json coc-html coc-css
 "CocInstall https://github.com/andys8/vscode-jest-snippets
-"CocInstall coc-ultisnips
+"x CocInstall coc-ultisnips
 "CocInstall https://github.com/xabikos/vscode-react
 "CocInstall https://github.com/xabikos/vscode-javascript
+"CocInstall https://github.com/infeng/vscode-react-typescript
 "
