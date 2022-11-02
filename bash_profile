@@ -19,8 +19,6 @@ export PATH=~/Library/Android/sdk/platform-tools:$PATH
 export GOPRIVATE=bitbucket.org/tendosystems/*,bitbucket.org/sburnett/*
 export GOPATH=/Users/stevenburnett/go
 export GOBIN=$GOPATH/bin
-export TENDO_EMR_CLIENT_ID=7xVQjCZVgOoRWUclgGXNzfopEHWU2sid
-export TENDO_EMR_CLIENT_SECRET=rpPcoAD80s4JVuPzdImsVP6fdsGmxZB7F5EozKMinwMlNf2UgMVHZOU96UVx9gWV
 PATH=$PATH:$GOBIN
 # ITERM PREFERENCES https://gist.githubusercontent.com/sdb1228/0801f79062acf581085b84605a8637f0/raw/39f0bba5675bf6028339aa4732b5db79acc68c49/itermprefferences
 source /opt/homebrew/opt/chruby/share/chruby/auto.sh
